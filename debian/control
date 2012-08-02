@@ -1,24 +1,19 @@
-Source: grml-etc-core
-Section: grml
+Source: grml-zshrc
+Section: shells
 Priority: optional
-Maintainer: Michael Prokop <mika@grml.org>
+Maintainer: Axel Beckert <abe@debian.org>
+Uploaders: Michael Prokop <mika@grml.org>
 Build-Depends: debhelper (>= 5), txt2tags
 Standards-Version: 3.9.3
-Homepage: http://git.grml.org/?p=grml-etc-core.git
-Vcs-git: git://git.grml.org/grml-etc-core.git
-Vcs-Browser: http://git.grml.org/?p=grml-etc-core.git
-Origin: Grml
-Bugs: mailto:bugs@grml.org
+Homepage: https://github.com/xtaran/grml-zshrc
+Vcs-Git: git://github.com/xtaran/grml-zshrc.git
+Vcs-Browser: https://github.com/xtaran/grml-zshrc
 
-Package: grml-etc-core
+Package: grml-zshrc
 Architecture: all
-Conflicts: grml-etc (<< 0.8-11), grml-autoconfig (<< 0.5-7), grml-scripts (<< 0.8-27)
-Depends: vim | nvi | editor
-Recommends: grml-scripts-core
-Pre-Depends: zsh
-Description: core etcetera files for the grml system
- This package includes some /etc files for the
- grml system. Whereas the main grml-etc package is
- meant for use on grml systems this package can be
- used on plain Debian (stable/testing/unstable)
- systems as well.
+Conflicts: grml-etc (<< 0.8-11), grml-autoconfig (<< 0.5-7), grml-scripts (<< 0.8-27), grml-etc-core
+Enhances: zsh
+Pre-Depends: zsh (>> 5.0.0-1+0~1343829106)
+Description: zshrc from grml
+ This package includes the famous grml's zsh configuration for use on
+ other Debian based systems.

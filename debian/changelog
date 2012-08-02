@@ -1,3 +1,9 @@
+grml-zshrc (0.1+0.6.2-1) UNRELEASED; urgency=low
+
+  * Split of a grml-zshrc package based on grml-etc-core.
+
+ -- Axel Beckert <abe@debian.org>  Wed, 01 Aug 2012 19:41:37 +0200
+
 grml-etc-core (0.6.2) grml-testing; urgency=low
 
   * [162b488] zshrc: drop trailing space in grep and ls _options.
