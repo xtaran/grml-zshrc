@@ -1,28 +1,8 @@
-grml-etc-core
+grml-zshrc
 =============
 
-This repository contains the core /etc files for the Grml system.
+This is the try to create a distribution independent grml-zshrc
+package based on grml-etc-core.
 
-While generally these files are distributed as a Debian package, named
-"grml-etc-core", they are also useful on other systems.
-
-To use the most important files for your user, use the following commands:
-
-    # IMPORTANT: please note that you might override existing
-    # configuration files in the current working directory!
-    wget -O .screenrc     http://git.grml.org/f/grml-etc-core/etc/grml/screenrc_generic
-    wget -O .vimrc        http://git.grml.org/f/grml-etc-core/etc/vim/vimrc
-    wget -O .zshrc        http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
-
-
-Or, on operating systems without wget:
-
-    # IMPORTANT: please note that you might override existing
-    # configuration files in the current working directory!
-    curl -o .screenrc     http://git.grml.org/f/grml-etc-core/etc/grml/screenrc_generic
-    curl -o .vimrc        http://git.grml.org/f/grml-etc-core/etc/vim/vimrc
-    curl -o .zshrc        http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
-
-
-Further information is available from http://grml.org/console/
-
+Needs features currently only present in pkgd-zsh's zshrc.d branch at
+http://anonscm.debian.org/gitweb/?p=collab-maint/zsh.git;a=shortlog;h=refs/heads/zshrc.d
