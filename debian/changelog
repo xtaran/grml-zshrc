@@ -1,8 +1,9 @@
-grml-zshrc (0.1+0.10.3-1) UNRELEASED; urgency=low
+grml-zshrc (0.10.3-1) UNRELEASED; urgency=low
 
   * Merge upstream release 0.10.3
   * Bump Standards-Version to 3.9.6, too.
   * Apply wrap-and-sort.
+  * Simplify versioning scheme.
 
  -- Axel Beckert <abe@debian.org>  Wed, 01 Aug 2012 19:41:37 +0200
 
