@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Axel Beckert <abe@debian.org>
 Uploaders: Michael Prokop <mika@grml.org>
 Build-Depends: debhelper (>= 5), txt2tags
-Standards-Version: 3.9.3
+Standards-Version: 3.9.6
 Homepage: https://github.com/xtaran/grml-zshrc
 Vcs-Git: git://github.com/xtaran/grml-zshrc.git
 Vcs-Browser: https://github.com/xtaran/grml-zshrc
