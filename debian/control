@@ -3,7 +3,8 @@ Section: shells
 Priority: optional
 Maintainer: Axel Beckert <abe@debian.org>
 Uploaders: Michael Prokop <mika@grml.org>
-Build-Depends: debhelper (>= 5), txt2tags
+Build-Depends: debhelper (>= 5),
+               txt2tags
 Standards-Version: 3.9.6
 Homepage: https://github.com/xtaran/grml-zshrc
 Vcs-Git: git://github.com/xtaran/grml-zshrc.git
@@ -11,7 +12,10 @@ Vcs-Browser: https://github.com/xtaran/grml-zshrc
 
 Package: grml-zshrc
 Architecture: all
-Conflicts: grml-etc (<< 0.8-11), grml-autoconfig (<< 0.5-7), grml-scripts (<< 0.8-27), grml-etc-core
+Conflicts: grml-autoconfig (<< 0.5-7),
+           grml-etc (<< 0.8-11),
+           grml-etc-core,
+           grml-scripts (<< 0.8-27)
 Enhances: zsh
 Pre-Depends: zsh (>> 5.0.0-1+0~1343829106)
 Description: zshrc from grml
