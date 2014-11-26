@@ -40,6 +40,16 @@ fi
 ## Now, we'll give a few examples of what you might want to use in your
 ## .zshrc.local file (just copy'n'paste and uncomment it there):
 
+## Prompt theme extension ##
+
+# Virtualenv support
+
+#function virtual_env_prompt () {
+#    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
+#}
+#grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
+#zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host path vcs percent
+
 ## ZLE tweaks ##
 
 ## use the vi navigation keys (hjkl) besides cursor keys in menu completion
@@ -130,6 +140,10 @@ fi
 #)
 #zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 #zstyle ':completion:*:other-accounts' users-hosts $other_accounts
+
+## add grml.org to your list of hosts
+#hosts+=(grml.org)
+#zstyle ':completion:*:hosts' hosts $hosts
 
 ## telnet on non-default ports? ...well:
 ## specify specific port/service settings:

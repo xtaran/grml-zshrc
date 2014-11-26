@@ -1,3 +1,358 @@
+grml-zshrc (0.1+0.10.3-1) UNRELEASED; urgency=low
+
+  * Merge upstream release 0.10.3
+
+ -- Axel Beckert <abe@debian.org>  Wed, 01 Aug 2012 19:41:37 +0200
+
+grml-etc-core (0.10.3) grml-testing; urgency=medium
+
+  [ Moviuro ]
+  * [a14cb09] zshrc: fixed the FreeBSD battery function
+
+ -- Michael Prokop <mika@grml.org>  Tue, 07 Oct 2014 09:58:54 +0200
+
+grml-etc-core (0.10.2) grml-testing; urgency=medium
+
+  [ Moviuro ]
+  * [db42ab7] zshrc: Added a missing test on OSX battery function
+  * [0aea68e] zshrc: little fixes for batteryopenbsd function
+
+  [ Michael Prokop ]
+  * [f95ed49] zshrc: drop templ/tt hash definitions
+
+ -- Michael Prokop <mika@grml.org>  Thu, 02 Oct 2014 11:40:52 +0200
+
+grml-etc-core (0.10.1) grml-testing; urgency=medium
+
+  * [7d3c439] zshenv: switch preference order of lesspipe.sh vs lesspipe
+  * [59deacc] zshenv: update live system paths for usage of $ADDONS inside
+    $PATH
+  * [737b243] zshenv: rework and unify $PATH handling
+  * [4868174] Bump Standards-Version to 3.9.6
+
+ -- Michael Prokop <mika@grml.org>  Mon, 22 Sep 2014 14:20:49 +0200
+
+grml-etc-core (0.10.0) grml-testing; urgency=medium
+
+  [ Frank Terbeck ]
+  * [3680c71] zshrc: Remove ‘-C’ from the ‘ls’ alias's options
+  * [6936cb2] zshrc: Add fallback to $BATTERY for backwards compatibility
+  * [feb94ae] grmlzshrc.5: Update manual wrt $BATTERY and
+    $GRML_DISPLAY_BATTERY
+  * [38316b5] zshrc: Send error output to devnull in grep-option detection
+
+  [ Moviuro ]
+  * [e8f18fb] zshrc: actually check that ls options exist before adding
+    them to the alias
+  * [dffa817] zshrc: actually check that grep options exist before adding
+    them to the alias
+  * [0731b9e] zshrc: updated OS recognition functions
+  * [287c348] zshrc: rewrite battery function
+  * [18b7e04] zshrc: renamed allcaps variable
+  * [0d77c12] zshrc: converted to UTF-8
+  * [22f465a] zshrc: added OpenBSD support for battery info
+  * [05479b2] zshrc: added FreeBSD support for battery info
+  * [dedf36c] zshrc: moved the unsupported OSes for the battery info in
+    the battery function
+  * [9d4d764] grmlzshrc.5: added the new OS recognition functions
+  * [7f858dc] zshrc: added Darwin support for battery info
+  * [20b695d] grmlzshrc.5: updated GRML_DISPLAY_BATTERY information
+
+  [ Michael Prokop ]
+  * [da3a6e6] Run wrap-and-sort on the debian directory
+  * [ad16216] zshrc: make sure to not alias already aliased ls commands
+  * [4ebe650] grmlzshrc.5: minor typo fixes and update timestamp
+
+ -- Michael Prokop <mika@grml.org>  Thu, 18 Sep 2014 12:21:58 +0200
+
+grml-etc-core (0.9.6) grml-testing; urgency=medium
+
+  [ Michael Prokop ]
+  * [cd0cfc7] zshrc: export SHELL only if unset, don't hardcode path for
+    zsh binary
+
+  [ Frank Terbeck ]
+  * [fa4c0c3] zshrc: Move generation marker to right position
+  * [6f238eb] zshrc: Adjustments for abbreviation expansion
+  * [fd56fcd] zshrc: Use modern colour codes with modern zsh versions
+  * [deeb32a] zshrc: Add function to toggle colour codes in vcs_info
+    formats
+
+ -- Michael Prokop <mika@grml.org>  Thu, 03 Jul 2014 12:47:36 +0200
+
+grml-etc-core (0.9.5) grml-testing; urgency=medium
+
+  * [8875863] Debian packaging: use correct "Grml" spelling
+  * [1d2b682] zshrc: extend dchange() to support apt-get and multiple
+    package names
+  * [7bbee30] zshrc: use "local" file variable in sll()
+  * [4d08694] zshrc: drop duplicated bk() function [Closes: issue1307]
+    Thanks to Thilo Six <tech@xk2c.de>
+
+ -- Michael Prokop <mika@grml.org>  Tue, 20 May 2014 12:28:22 +0200
+
+grml-etc-core (0.9.4) grml-testing; urgency=medium
+
+  [ Erik Bernstein ]
+  * [46c723f] zshrc: introduce variable for the compdump file
+    [Closes: issue1275]
+
+  [ Frank Terbeck ]
+  * [5afe1a2] Make ‘egrep’ use the same options as ‘grep’
+    [Closes: issue1230]
+  * [1317ff5] zshrc: Make options of gpasswd complete via _gnu_generic
+
+ -- Michael Prokop <mika@grml.org>  Sat, 19 Apr 2014 15:44:35 +0200
+
+grml-etc-core (0.9.3) grml-testing; urgency=medium
+
+  [ Michael Prokop ]
+  * [5394032] zshrc: drop -b option from `ls' alias, unsupported
+    e.g. on OpenBSD
+  * [da81021] zshrc: drop setting TZ via /etc/timezone
+  * [57254cb] zshrc: do not source /etc/sysconfig/keyboard
+  * [85825da] zshrc: check for DIRSTACK{SIZE,FILE} in chpwd()
+
+  [ Bernhard Tittelbach ]
+  * [9b93265] zsh: purge more latex filename extensions
+
+ -- Michael Prokop <mika@grml.org>  Mon, 03 Feb 2014 16:11:16 +0100
+
+grml-etc-core (0.9.2) grml-testing; urgency=low
+
+  [ Michael Prokop ]
+  * [4bbd12c] script-functions: correct tabstop setting in vim modeline
+  * [a74236f] Bump Standards-Version to 3.9.5
+
+  [ Thilo Six ]
+  * [6b83c3f] script-functions: Set filetype to "sh" with vim
+  * [5f9a26a] check4progs: Change testing from ‘which’ to iterating
+    over $PATH [Closes: issue1284]
+
+  [ Frank Terbeck ]
+  * [eb08ffe] Update hl and _hl_complete to work with current
+    ‘highlight’ versions
+
+ -- Michael Prokop <mika@grml.org>  Tue, 24 Dec 2013 13:12:42 +0100
+
+grml-etc-core (0.9.1) grml-testing; urgency=low
+
+  [ Michael Prokop ]
+  * [931ce01] Use ISO8601 date in /etc/grml/screenrc [Closes: issue1283]
+    Thanks to Andras Korn for the suggestion
+
+  [ Thilo Six ]
+  * [3d5b16f] Rewrite check4progs from etc/grml/script-functions
+    [Closes: issue1279]
+
+ -- Michael Prokop <mika@grml.org>  Thu, 07 Nov 2013 09:54:32 +0100
+
+grml-etc-core (0.9.0) grml-testing; urgency=low
+
+  [ Thorsten Glaser ]
+  * [eaf6856] Fix: trying to overwrite '/etc/vim/vimrc', which is also in
+    package vim-common 2:7.3.547-7
+
+  [ Frank Terbeck ]
+  * [45c3009] Add `grml_theme_has_token' guard function
+  * [d5c0c24] grmlzshrc(5): Briefly mention `grml_theme_has_token()'
+  * [2db6417] grmlzshrc(5): Mentioned the wrong function; actually:
+    grml_theme_add_token()
+
+  [ Michael Prokop ]
+  * [7fc9f75] zshrc: use "ctrl-x ." instead ",." to enable power
+    completion / abbreviation expansion
+
+ -- Michael Prokop <mika@grml.org>  Wed, 04 Sep 2013 17:06:27 +0200
+
+grml-etc-core (0.8.2) grml-testing; urgency=low
+
+  [ Christian Hesse ]
+  * [21be0f4] print error code in bold
+
+  [ Bernhard Tittelbach ]
+  * [3c6ce0c] make help-zle work with new bind2maps
+
+  [ Michael Prokop ]
+  * [6c3c1d6] zshrc: drop duplicated "Complete word from GNU screen
+    buffer" documentation. Thanks to Frank Terbeck <ft@grml.org> for the
+    hint
+
+  [ Frank Terbeck ]
+  * [89815de] Fix Virtualenv prompt example
+
+  [ Jan Hruban ]
+  * [d5f9c90] zshrc: Fix style lookup of `post' styles in prompt setup
+    [Closes: issue1253]
+
+ -- Michael Prokop <mika@grml.org>  Mon, 08 Jul 2013 10:59:29 +0200
+
+grml-etc-core (0.8.1) grml-testing; urgency=low
+
+  [ Frank Terbeck ]
+  * [06a39dc] zshrc: Make root-user name bold in prompt again
+
+ -- Michael Prokop <mika@grml.org>  Wed, 03 Apr 2013 10:37:11 +0200
+
+grml-etc-core (0.8.0) grml-testing; urgency=low
+
+  The "new prompt + keyboard handling in grml-zshrc" release
+
+  [ Bernhard Tittelbach ]
+  * [aa572fc] zsh: abk, don't match everything between . and | and thus
+    make it work after e.g. /
+
+  [ Frank Terbeck ]
+  * zshrc, prompt related changes:
+    - [2766294] Add promptsys help (-h) text
+    - [6c4346c] Register prompt theme with promptsys
+    - [b97f20f] Implement the basic grml prompt framework
+    - [feb4d46] Move more precmd() code to hook fncs
+    - [cc7541f] Allow `items' list for PS1 _and_ RPS1
+    - [ee36478] support [[ $BATTERY -gt 0 ]]
+    - [c1d7811] Support TERM == dumb
+    - [c875d64] Username in red for root
+    - [9dfd5ff] Add new theme: grml-large
+    - [76c7e00] Add new theme: grml-chroot
+    - [316eaeb] Fix wrong logic for user name colouring
+    - [205760c] Enable the grml prompt theme via promptsys
+    - [4dc88ce] Fix quoting style in dumb-terminal config
+    - [1daee92] Handle grml-chroot in dumb-terminal config
+    - [a94f602] Enable one of the prompts
+    - [db038bb] Provide fallback in case promptinit fails
+    - [605fb0e] Remove old prompt setting scheme
+    - [5989b0e] Reorganise the prompt section
+    - [08ab5d9] Only enable prompt themes with zsh >= 4.3.7
+    - [6cc9bb0] Use a non-forking expression to read /etc/debian_chroot
+    - [e705ddd] Keep maps sorted
+    - [1a812dd] Documentation update
+    - [4e72b7f] New prompt mixed up %B and %b for the path item
+    - [6de54e2] grmlzshrc.t2t: Document the new prompt themes
+    - [226d414] grmlzshrc.t2t: Document how static prompt
+      customisation should be done now
+    - [5ef5260] Use %# instead of %% for the `percent' token in the prompt
+    - [6aff2d8] NEWS: Add note about prompt changes in new version
+    - [d9c3851] Fix `percent' token in the new prompt
+    - [d62ce6e] Add `grml_theme_add_token()' function
+    - [20f6245] Fix mistakes in grml_theme_add_token() help output
+    - [0c58a53] skel/.zshrc: Add example for prompt extension for virtualenv
+
+  * zshrc, keyboard related changes:
+    - [d6923f3] zshrc, keys: Reorganise keyboard setup
+    - [4c8faef] zshrc, keys: Move bindkey calls to the right place
+    - [7d0a2bc] zshrc, keys: fix `zrcgotwidget()' function
+    - [00522c8] zshrc: Use zrcgotwidget in appropriate places
+    - [7ea446c] zshrc: Remove old reverse-menu-complete binding
+    - [2e1c62b] zshrc, keys: Move all bindings over to bind2maps
+    - [8ffa1f8] Add NEWS entry about changed keyboard handling
+
+  * zshrc, misc changes:
+    - [49a3e77] zshrc: Load zsh/parameters module
+    - [cb300a4] zshrc: Fix `salias' wrt parameter scope
+    - [828c8a4] zshrc: unfunction less utilities
+    - [f366ab2] grmlzshrc.t2t: Add customisation note about smkx and rmkx
+      for keybindings
+    - [5c7ee58] NEWS: Use grml.org address
+    - [81427a7] zshrc: Make zle-smkx() and zle-rmkx() more robust wrt
+      changed options
+    - [6a512b0] zshrc: Move preexec() code to hooks
+    - [b5b5fbf] grmlzshrc.t2t: Update copyright years
+    - [01f5d9f] zshrc: Fix error in docstring
+    - [2b02230] zshrc: Move CNF handler to a better place
+
+  [ Michael Prokop ]
+  * [82c0c4a] zshrc: some fixes to make grml-gen-zshrefcard happy again.
+    Thanks to Frank Terbeck <ft@grml.org> for helping
+  * [47c6a05] zshrc: drop deprecated grml-rebuildfstab alias
+  * [e67dc22] zshrc: some further tuning to make grml-gen-zshrefcard
+    output nice
+
+  [ Benedikt Morbach ]
+  * [4258fbb] fix NOPRECMD logic
+
+ -- Michael Prokop <mika@grml.org>  Tue, 02 Apr 2013 13:39:47 +0200
+
+grml-etc-core (0.7.4) grml-testing; urgency=low
+
+  [ Michael Prokop ]
+  * [a030fbf] zshrc: add dcopyright function to display copyright file of
+    a given package. Thanks to Gregor Herrmann <gregoa@debian.org> for the
+    patch
+
+  [ Hendrik Jaeger ]
+  * [5341437] vimrc: remove duplicate settings
+
+  [ Evan Pitstick ]
+  * [b10097c] Moved the grml.org host to skel and added support for
+    ZDOTDIR
+
+ -- Michael Prokop <mika@grml.org>  Tue, 26 Feb 2013 10:10:44 +0100
+
+grml-etc-core (0.7.3) grml-testing; urgency=low
+
+  [ Pierre Schmitz ]
+  * [bd87086] zshrc: Restore original prompt
+
+ -- Michael Prokop <mika@grml.org>  Thu, 27 Dec 2012 12:30:01 +0100
+
+grml-etc-core (0.7.2) grml-testing; urgency=low
+
+  [ Bernhard Tittelbach ]
+  * [57bbea3] zsh: updated purge function
+
+  [ Frank Terbeck ]
+  * [b0fec25] zshrc: Remove zurl's dependency on =~ type regexp conditions
+
+  [ Christian Hesse ]
+  * [843931f] unify spelling of colo(u)r to color
+
+ -- Michael Prokop <mika@grml.org>  Mon, 17 Dec 2012 12:52:00 +0100
+
+grml-etc-core (0.7.1) grml-testing; urgency=low
+
+  [ Bernhard Tittelbach ]
+  * [88b8704] zsh: improve purge(), glob for files where appropriate and
+    don't try to delete stuff twice
+
+  [ Michael Prokop ]
+  * [fe6aa2b] zshrc: use variable ffound in zrcautoload function
+  * [0098421] Bump Standards-Version to 3.9.4
+
+ -- Michael Prokop <mika@grml.org>  Tue, 02 Oct 2012 09:58:46 +0200
+
+grml-etc-core (0.7.0) grml-testing; urgency=low
+
+  [ Michael Prokop ]
+  * [ea65fdc] zshrc: Enable CLICOLOR on FreeBSD. Thanks to
+    Christian Hofstaedtler
+
+  [ Bernhard Tittelbach ]
+  * [174a091] zshrc: make simple-extract also work with uris that end in
+    e.g. format=zip
+  * [9cef3a9] zsh: fix typo grml functions autoload
+  * tmux related changes:
+    - [895e6d6] new statusline, space and backspace enabled for
+      window switching
+    - [5da798c] more space, session name
+    - [f4ad46f] mouse-select-pane off to enable terminal window
+      copy&paste
+    - [046d45b] better user@host:session scheme
+    - [646f73f] date and time, and commented out alternatives
+    - [7eaf7d8] make copy&pase mode useable
+    - [ee6fa75] kill-session for gebi
+    - [c6c2094] kill-pane instead of kill-window
+    - [3309823] join-pane
+
+  [ Frank Terbeck ]
+  * [76ee162] Only define vim() if vim is available
+  * [c67b327] Do not disable zstyle if compsys did not load
+  * [78d890c] Specify a command search path for sudo completion
+    [Closes: issue1207]
+  * [8564319] Workaround incompatibilities with the keyboard setup of
+    some  vendors
+
+ -- Michael Prokop <mika@grml.org>  Mon, 10 Sep 2012 09:09:16 +0200
+
 grml-zshrc (0.1+0.6.2-1) UNRELEASED; urgency=low
 
   * Split of a grml-zshrc package based on grml-etc-core.

@@ -1,6 +1,6 @@
 GRMLZSHRC
 
-July, 2011
+September, 2014
 
 %!target: man
 %!postproc(man): "^(\.TH.*) 1 "  "\1 5 "
@@ -44,17 +44,21 @@ zshenv file.
 Some of the behaviour of //grmlzshrc// can be altered by setting certain shell
 variables. These may be set temporarily when starting zsh like this:
 \
-``` % BATTERY=1 zsh
+``` % GRML_DISPLAY_BATTERY=1 zsh
 
 Or by setting them permanently in **zshrc.pre** (See AUXILIARY FILES below).
 
 : **BATTERY**
-If set to a value greater than zero and //acpi// installed, //grmlzshrc// will
-put the battery status into the right hand side interactive prompt.
+Deprecated. Use **GRML_DISPLAY_BATTERY** instead.
 
 : **COMMAND_NOT_FOUND**
 A non zero value activates a handler, which is called when a command can not
 be found. The handler is defined by GRML_ZSH_CNF_HANDLER (see below).
+
+: **GRML_DISPLAY_BATTERY**
+If set to a value greater than zero, //grmlzshrc// will put the battery status
+into the right hand side interactive prompt. Supported OSes are //GNU/Linux//,
+//FreeBSD//, //OpenBSD// and //Darwin//.
 
 : **GRML_ZSH_CNF_HANDLER**
 This variable contains the handler to be used by COMMAND_NOT_FOUND (see above)
@@ -104,6 +108,9 @@ Import "/etc/default/locale", if set to zero (default).
 : **ZSH_PROFILE_RC**
 A non zero value causes shell functions to be profiled. The results can be
 obtained with the zprof builtin command (see zshmodules(1) for details).
+
+: **COMPDUMPFILE**
+Specifies the location of the completion dump file. Default: $HOME/.zcompdump.
 
 
 = FEATURE DESCRIPTION =
@@ -310,6 +317,53 @@ style. (The default is **true** in all contexts.)
 
 == PROMPT ==
 
+The //grmlzshrc// now supplies three prompt themes compatible with zsh's
+**promptinit** system. The three themes are called **grml**, **grml-large** and
+**grml-chroot**.
+
+By default, **grml** is used, unless //$GRMLPROMPT// is set to a value larger
+than zero, in which case **grml-large** is used. Lastly, if //$GRML_CHROOT// is
+non-empty, **grml-chroot** is used.
+
+As usual, with promtinit themes, the user may switch to a different theme using
+the //prompt// utility:
+\
+```
+    prompt grml-large
+```
+
+That will use the **grml-large** prompt theme.
+
+The themes are highly customisable. The main source of documentation about
+customisation is the main **grml** theme's doc-string, that is available via
+the following command:
+\
+```
+    prompt -h grml
+```
+
+The other themes also come with doc-strings, but the main theme's is the
+canonical reference about all of them.
+
+This feature requires version //4.3.7// of the shell. Older versions will use
+the classic grml prompt as a fallback.
+
+A note to people who like customisation: If you are **not** using a prompt
+theme for your customisation, but you're either statically setting $PS1 (or
+$PROMPT) or you're constructing one of those variables in zsh's \`precmd()'
+function, make sure you are turning the zsh's prompt theme system **off**
+before doing so. A correct example customisation could look like this:
+\
+```
+    # Turn the prompt system off:
+    prompt off
+    # Customise the prompt yourself:
+    PS1='%~ %# '
+```
+
+You also add your own tokens by using the \`grml_theme_add_token()' function.
+Call the function without arguments for detailed documentation about that
+procedure.
 
 == GNU/SCREEN STATUS SETTING ==
 //grmlzshrc// sets screen's hardstatus lines to the currently running command
@@ -464,6 +518,23 @@ Display help on keybindings and zsh line editor. Press consecutively to page thr
 Brings a job, which got suspended with CTRL-z back to foreground.
 
 
+=== Customisation ===
+
+To customise keybindings, you can just use zsh's bindkey utility. However, if
+you plan to to use the `//zle-line-init//' or `//zle-line-finish//' hooks
+yourself, make sure you call the following functions in the respective hook:
+
+- **zle-line-init**: //zle-smkx//
+- **zle-line-finish**: //zle-rmkx//
+
+
+This is **required** so the keybindings set up by //grmlzshrc// work. The
+reason for this is to turn the terminal into the right mode while zsh's line
+editor (zle) is running. This enables us to query //terminfo// about escape
+sequences for special keys and thus simplify and generalise our keybinding
+section.
+
+
 == SHELL FUNCTIONS ==
 //grmlzshrc// comes with a wide array of defined shell functions to ease the
 user's life.
@@ -514,8 +585,8 @@ builtin or reserved word. If the option -c is given, only returns true,
 if command is a program.
 
 : **checkhome()**
-Changes directory to $HOME on first invocation of zsh. This is neccessary on
-grml systems with autologin.
+Changes directory to $HOME on first invocation of zsh. This is necessary on
+Grml systems with autologin.
 
 : **cl()**
 Changes current directory to the one supplied by argument and lists the files
@@ -523,6 +594,9 @@ in it, including file names starting with ".".
 
 : **dchange()**
 Shows the changelog of given package in $PAGER.
+
+: **dcopyright()**
+Shows the copyright of given package in $PAGER.
 
 : **debian2hd()**
 Tells the user to use grml-debootstrap, if she wants to install debian to
@@ -544,6 +618,15 @@ Edit given shell function.
 
 : **freload()**
 Reloads an autoloadable shell function (See autoload in zshbuiltins(1)).
+
+: **grml_vcs_info_toggle_colour()**
+Toggles between coloured and uncoloured formats in vcs_info configuration.
+This is useful with prompts that break if colour codes are in vcs_info
+format expansions (like the `clint' prompt and every other prompt that
+uses %v to expand the contents of `$vcs_into_msg_0_'). If you are using
+customised vcs_info formats, you shouldn't be using this function, since
+it will set all formats to grml's default values (either coloured or plain)
+again.
 
 : **hgdi()**
 Use GNU diff with options -ubwd for mercurial.
@@ -576,6 +659,9 @@ Returns true, if zsh version is equal or greater than 4.3.3, else false.
 : **isdarwin()**
 Returns true, if running on darwin, else false.
 
+: **isfreebsd()**
+Returns true, if running on FreeBSD, else false.
+
 : **isgrml()**
 Returns true, if running on a grml system, else false.
 
@@ -585,9 +671,15 @@ Returns true, if running on a grml system from a live cd, else false.
 : **isgrmlsmall()**
 Returns true, if run on grml-small, else false.
 
+: **islinux()**
+Returns true, if running on Linux, else false.
+
 : **iso2utf()**
 Changes every occurrence of the string iso885915 or ISO885915 in
 environment variables to UTF-8.
+
+: **isopenbsd()**
+Returns true, if running on OpenBSD, else false.
 
 : **isutfenv()**
 Returns true, if run within an utf environment, else false.
@@ -784,9 +876,6 @@ grep-excuses(1)).
 : **grep** (//grep --color=auto//)
 Shows grep output in nice colors, if available.
 
-: **grml-rebuildfstab** (//rebuildfstab -v -r -config//)
-Scans for new devices and updates /etc/fstab according to the findings.
-
 : **grml-version** (//cat /etc/grml_version//)
 Prints version of running grml.
 
@@ -834,11 +923,10 @@ Lists files in long colored output format.
 : **llog** (//$PAGER /var/log/syslog//)
 Opens syslog in pager.
 
-: **ls** (//ls -b -CF --color=auto//)
-Lists directory printing octal escapes for nongraphic characters.
-Entries are listed by columns and an indicator for file type is appended
-to each file name. Additionally the output is colored, if the terminal
-supports it.
+: **ls** (//ls -CF --color=auto//)
+Lists directory, entries are listed by columns and an indicator for
+file type is appended to each file name. Additionally the output is
+colored, if the terminal supports it.
 
 : **lsa** (//ls -a .*(.)//)
 Lists dot files in current working directory.
@@ -898,7 +986,7 @@ with users .screenrc config if it exists, else use /etc/grml/screenrc_grml
 as configuration.
 
 : **su** (//sudo su//)
-If user is running a grml live-CD, dont ask for any password, if she
+If user is running a Grml live system, don't ask for any password, if she
 wants a root shell.
 
 : **term2iso** (//echo 'Setting terminal to iso mode' ; print -n '\e%@'//)
@@ -937,7 +1025,7 @@ be used to permantenly change //grmlzshrc//'s STARTUP VARIABLES (see above):
 \
 ```
 # show battery status in RPROMPT
-BATTERY=1
+GRML_DISPLAY_BATTERY=1
 # always load the complete setup, even for root
 GRML_ALWAYS_LOAD_ALL=1
 ```
@@ -965,7 +1053,7 @@ On non-debian systems, that is not an option, but all is not lost:
 % wget -O .zshrc http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
 ```
 
-If you would also like to get seperate function files (which you can put into
+If you would also like to get separate function files (which you can put into
 your **$fpath**), you can browse and download them at:
 
 http://git.grml.org/?p=grml-etc-core.git;a=tree;f=usr_share_grml/zsh;hb=HEAD
@@ -1114,7 +1202,7 @@ Beckert <abe@deuxchevaux.org>.
 
 
 = COPYRIGHT =
-Copyright (c) 2009-2011 Grml project <http://grml.org>
+Copyright (c) 2009-2013 Grml project <http://grml.org>
 
 This manpage is distributed under the terms of the GPL version 2.
 
